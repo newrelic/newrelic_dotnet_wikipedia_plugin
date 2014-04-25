@@ -11,9 +11,9 @@ namespace NewRelic.Platform.Wikipedia.Plugin
             string name = (string)properties["name"];
             string host = (string)properties["host"];
 
-            if (name == null || host == null)
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(host))
             {
-                throw new ArgumentNullException("'name' and 'host' cannot be null. Do you have a 'config/plugin.json' file?");
+                throw new ArgumentNullException("'name' and 'host' cannot be null or empty. Do you have a 'config/plugin.json' file?");
             }
 
             return new WikipediaAgent(name, host);

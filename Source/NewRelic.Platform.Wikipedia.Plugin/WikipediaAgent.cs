@@ -10,8 +10,20 @@ namespace NewRelic.Platform.Wikipedia.Plugin
 {
     class WikipediaAgent : Agent
     {
-        public override string Guid { get { return "com.newrelic.dotnet.wikipedia"; } }
-        public override string Version { get { return "1.0.0"; } }
+        public override string Guid 
+        { 
+            get 
+            { 
+                return "com.newrelic.dotnet.wikipedia"; 
+            } 
+        }
+
+        public override string Version { 
+            get 
+            { 
+                return "1.0.0"; 
+            } 
+        }
 
         private const String WIKIPEDIA_URL = "/w/api.php?action=query&format=json&meta=siteinfo&siprop=statistics";
 
@@ -62,7 +74,7 @@ namespace NewRelic.Platform.Wikipedia.Plugin
         private int? GetNumberOfArticles()
         {
             HttpWebRequest request = WebRequest.Create(uri) as HttpWebRequest;
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
@@ -72,16 +84,18 @@ namespace NewRelic.Platform.Wikipedia.Plugin
                         response.StatusDescription));
                 }
 
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string responseJson = reader.ReadToEnd();
-                IDictionary<string, object> responseObject = JsonHelper.Deserialize(responseJson) as IDictionary<string, object>;
-
-                if (responseObject != null)
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
-                    IDictionary<string, object> query = (IDictionary<string, object>)responseObject["query"];
-                    IDictionary<string, object> statistics = (IDictionary<string, object>)query["statistics"];
+                    string responseJson = reader.ReadToEnd();
+                    IDictionary<string, object> responseObject = JsonHelper.Deserialize(responseJson) as IDictionary<string, object>;
 
-                    return Convert.ToInt32(statistics["articles"]);
+                    if (responseObject != null)
+                    {
+                        IDictionary<string, object> query = (IDictionary<string, object>)responseObject["query"];
+                        IDictionary<string, object> statistics = (IDictionary<string, object>)query["statistics"];
+
+                        return Convert.ToInt32(statistics["articles"]);
+                    }
                 }
             }
 
