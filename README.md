@@ -172,7 +172,7 @@ Plugin support and troubleshooting assistance can be obtained by visiting [suppo
 
 **Q: I've started this plugin, now what?**
 
-**A:** Once you have a plugin reporting with the proper license key, log into New Relic [here](http://rpm.newrelic.com).  If everything was successful, you should see a new navigation item appear on the left navigation bar identifying your new plugin (This may take a few minutes).  Click on this item to see the metrics for what you were monitoring (bear in mind, some details -- such as summary metrics -- may take several minutes to show values).
+**A:** Once you have a plugin reporting with the proper license key, log into New Relic [here](https://rpm.newrelic.com).  If everything was successful, you should see a new navigation item appear on the left navigation bar identifying your new plugin (This may take a few minutes).  Click on this item to see the metrics for what you were monitoring (bear in mind, some details -- such as summary metrics -- may take several minutes to show values).
 
 ----
 
