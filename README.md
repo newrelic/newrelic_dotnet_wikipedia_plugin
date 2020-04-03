@@ -1,3 +1,5 @@
+[![Archived header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/Archived.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#archived)
+
 # New Relic Platform Wikipedia Plugin - .NET
 
 Find the New Relic Wikipedia Example plugin in the [New Relic storefront](http://newrelic.com/plugins/new-relic-inc/8)
